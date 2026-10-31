@@ -1,4 +1,4 @@
-# Bolo: speak Hindi, hear English
+# Anuvaad: speak Hindi, hear English
 
 A live Hindi → English voice interpreter. You speak Hindi (or Hinglish) into your phone, and a natural English voice speaks the translation in your earbuds **about 1–2 seconds after you finish each phrase**, while you keep talking.
 
@@ -30,7 +30,7 @@ Built for the [Bolna Buildathon](https://www.bolna.ai/symphony/buildathon) (Symp
 
 ## The hard part: Hindi word order
 
-Hindi is verb-final. "मैं कल बाज़ार जाऊँगा" is literally *"I tomorrow market will-go"*. Translating word by word gives broken English, and waiting for the full sentence adds seconds of delay. Bolo handles this with three tools:
+Hindi is verb-final. "मैं कल बाज़ार जाऊँगा" is literally *"I tomorrow market will-go"*. Translating word by word gives broken English, and waiting for the full sentence adds seconds of delay. Anuvaad handles this with three tools:
 
 1. **Stable-text rule.** Partial transcripts change as more audio arrives, so the last 2 words of every partial are never trusted.
 2. **Clause-aware chunking** (`server/chunker.js`). A chunk is sent for translation when the stable text reaches a Hindi clause boundary:
