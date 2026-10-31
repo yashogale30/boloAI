@@ -3,65 +3,292 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0f1115" />
+    <meta name="theme-color" content="#000000" />
     <title>Bolo: Hindi to English, live</title>
+    
+    <!-- Google Fonts: Instrument Serif, Outfit, Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- Top-Notch Floating Capsule Navbar (Dynamic Island / Supaste style) -->
+    <header class="top-notch-header">
+      <nav class="top-notch-nav" aria-label="Main Navigation">
+        <!-- Brand -->
+        <a href="#" class="brand-group">
+          <div class="brand-squircle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+            </svg>
+          </div>
+          <span class="brand-title">Bolo</span>
+          <span id="nav-status-indicator" class="nav-status-dot" title="Idle"></span>
+        </a>
+
+        <!-- Center Links -->
+        <div class="nav-links">
+          <a href="#demo-section" class="nav-link">Live App</a>
+          <a href="#how-it-works" class="nav-link">How it works</a>
+          <a href="#performance" class="nav-link">Telemetry</a>
+        </div>
+
+        <!-- Right Dropdown & CTA -->
+        <div class="nav-actions">
+          <!-- Pill Dropdown Selector -->
+          <div class="nav-dropdown" id="modeDropdown">
+            <button class="nav-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" id="dropdownToggle" title="Audio & Translation Mode">
+              <span class="lang-tag" id="navLangTag">HI → EN</span>
+              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown-popover" id="dropdownPopover">
+              <div class="popover-section">
+                <span class="popover-label">Translation Pair</span>
+                <div class="popover-item active">
+                  <span class="popover-check">✓</span>
+                  <span>Hindi to English (Live Streaming)</span>
+                </div>
+              </div>
+              <div class="popover-divider"></div>
+              <div class="popover-section">
+                <span class="popover-label">Audio Output Mode</span>
+                <button type="button" class="popover-option active" data-mode="earbuds" id="popoverModeEarbuds">
+                  <span class="mode-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+                  </span>
+                  <div class="option-info">
+                    <span class="option-title">Earbuds (Recommended)</span>
+                    <span class="option-desc">Continuous mic without feedback</span>
+                  </div>
+                </button>
+                <button type="button" class="popover-option" data-mode="speaker" id="popoverModeSpeaker">
+                  <span class="mode-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+                  </span>
+                  <div class="option-info">
+                    <span class="option-title">Speaker Mode</span>
+                    <span class="option-desc">Mutes mic while English plays</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Apple-style white pill CTA button -->
+          <button id="navCta" class="apple-pill-cta" type="button">
+            Start Translating
+          </button>
+        </div>
+      </nav>
+    </header>
+
     <main>
-      <header>
-        <div class="brand">
-          <div>
-            <h1>Bolo</h1>
-          </div>
-        </div>
-        <!-- <span id="status" class="pill idle">Idle</span> -->
-      </header>
-
-      <section class="session" aria-label="Live translation session">
-        <div class="session-intro">
-          <h2>Speak naturally.</h2>
-          <p>Bolo translates Hindi into English while you talk.</p>
-          <div class="mode" role="radiogroup" aria-label="Output mode">
-            <label><input type="radio" name="mode" value="earbuds" checked /><span>Earbuds</span></label>
-            <label><input type="radio" name="mode" value="speaker" /><span>Speaker</span></label>
-          </div>
-          <p class="sr-only" id="modeHint">Earbuds keep the mic open while English plays.</p>
-          <button id="start" class="primary"><span>Start translating</span><span class="button-arrow">→</span></button>
-          <button id="demo" class="link">Try a sample conversation <span>→</span></button>
+      <!-- Hero Section with Dynamic Billow Cloud Sky Shader Background -->
+      <section class="hero-section">
+        <div class="hero-sky-wrapper">
+          <canvas id="cloud-canvas" class="hero-sky-canvas"></canvas>
         </div>
 
-        <div class="listening-panel">
-          <div class="section-head">
-            <p class="section-title">Hindi</p>
+        <div class="hero-content">
+          <!-- Sub-badge -->
+          <div class="hero-badge">
+            <span class="badge-dot-live"></span>
+            <span class="badge-text">LIVE SPEECH AI</span>
+            <span class="badge-separator">•</span>
+            <span class="badge-sub">1–3s LATENCY</span>
           </div>
-          <p id="hindi" class="hindi"><span class="final"></span><span class="interim"></span><span class="empty-state">Your Hindi transcript will appear here.</span></p>
-          <div class="meter" aria-label="Microphone level"><div id="level"></div></div>
+
+          <!-- Main headline with accent phrase in editorial italic rose -->
+          <h1 class="hero-headline">
+            Where spoken Hindi <br />
+            meets <span class="font-editorial italic font-normal text-rose-600">instant English.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Speak naturally in Hindi and hear fluent English in your earbuds moments later. Real-time streaming speech recognition, neural translation, and ultra-fast voice synthesis.
+          </p>
+
+          <!-- Dual CTAs -->
+          <div class="hero-cta-group">
+            <button id="heroPrimary" class="hero-btn-primary" type="button">
+              <span>Start Translating</span>
+              <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button id="heroDemo" class="hero-btn-secondary" type="button">
+              <svg class="play-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"/>
+              </svg>
+              <span>Try Sample Conversation</span>
+            </button>
+          </div>
         </div>
       </section>
 
-      <section class="translation-card" aria-live="polite">
-        <div class="section-head translation-head">
-          <p class="section-title">English</p>
+      <!-- Aceternity-style 3D Container Scroll-Tilt Perspective Card -->
+      <section id="demo-section" class="perspective-wrapper">
+        <div class="perspective-card" id="tiltCard">
+          <div class="tilt-glare"></div>
+
+          <!-- Device Chassis Topbar -->
+          <div class="device-chassis-topbar">
+            <div class="chassis-brand">
+              <span class="chassis-dot"></span>
+              <span class="chassis-label">BOLO REAL-TIME TRANSLATOR</span>
+            </div>
+            <div class="chassis-status-pill">
+              <span id="status" class="pill idle">Idle</span>
+            </div>
+          </div>
+
+          <!-- Main Translation Session -->
+          <div class="session" aria-label="Live translation session">
+            <!-- Left Input / Controls Panel -->
+            <div class="session-intro">
+              <div class="intro-headline-group">
+                <h2>Speak naturally.</h2>
+                <p>Bolo translates Hindi speech into fluent English while you talk.</p>
+              </div>
+
+              <div class="controls-group">
+                <!-- Mode Segmented Control -->
+                <div class="mode" role="radiogroup" aria-label="Output mode">
+                  <label>
+                    <input type="radio" name="mode" value="earbuds" checked />
+                    <span class="mode-label-inner">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+                      Earbuds
+                    </span>
+                  </label>
+                  <label>
+                    <input type="radio" name="mode" value="speaker" />
+                    <span class="mode-label-inner">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                      Speaker
+                    </span>
+                  </label>
+                </div>
+                <p class="sr-only" id="modeHint">Earbuds keep the mic open while English plays.</p>
+
+                <!-- Primary Start Translating Button -->
+                <button id="start" class="primary">
+                  <span>Start translating</span>
+                  <span class="button-arrow">→</span>
+                </button>
+
+                <!-- Sample Audio Trigger Link -->
+                <button id="demo" class="link">
+                  Try a sample conversation <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Listening Panel -->
+            <div class="listening-panel">
+              <div class="section-head">
+                <div class="section-title-group">
+                  <span class="live-dot-wave"></span>
+                  <p class="section-title">Hindi Input</p>
+                </div>
+                <span class="listening-tag">Continuous ASR</span>
+              </div>
+              <p id="hindi" class="hindi">
+                <span class="final"></span>
+                <span class="interim"></span>
+                <span class="empty-state">Your Hindi transcript will appear here as you speak.</span>
+              </p>
+              <div class="meter-container">
+                <div class="meter" aria-label="Microphone level">
+                  <div id="level"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live English Translation Stream Card -->
+          <div class="translation-card" aria-live="polite">
+            <div class="section-head translation-head">
+              <div class="section-title-group">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <p class="section-title">English Translation</p>
+              </div>
+              <span class="stream-pill">Streaming TTS</span>
+            </div>
+            <ol id="segments" class="segments">
+              <li class="placeholder">
+                <div class="seg-en">English audio and translation will stream here in real-time.</div>
+                <div class="seg-hi">यहाँ आपके द्वारा बोले गए वाक्यों का अंग्रेज़ी अनुवाद सुनाई और दिखाई देगा।</div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Telemetry Performance Dashboard -->
+          <div class="latency" id="performance" aria-label="Translation performance">
+            <div class="metric big">
+              <span class="metric-name">Current Delay</span>
+              <span><span id="lastLat" class="value">–</span><span class="unit">s</span></span>
+            </div>
+            <div class="metric">
+              <span class="metric-name">Average Latency</span>
+              <span><span id="avgLat" class="value">–</span><span class="unit">s</span></span>
+            </div>
+            <div class="metric">
+              <span class="metric-name">Segments Completed</span>
+              <span id="count" class="value">0</span>
+            </div>
+            <div id="breakdown" class="breakdown">
+              <svg class="breakdown-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+              <span>STT – · Translate – · Voice –</span>
+            </div>
+          </div>
         </div>
-        <ol id="segments" class="segments"></ol>
       </section>
 
-      <section class="latency" aria-label="Translation performance">
-        <div class="metric big">
-          <span class="metric-name">Current delay</span>
-          <span><span id="lastLat" class="value">–</span><span class="unit">s</span></span>
+      <!-- Highlights & Architecture Section (No emojis, sleek SVGs) -->
+      <section id="how-it-works" class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="feature-title">Sub-2s Glass-to-Ear Latency</h3>
+          <p class="feature-desc">Continuous 16kHz PCM streaming via low-latency WebSockets with chunk-level sentence boundary prediction.</p>
         </div>
-        <div class="metric">
-          <span class="metric-name">Average</span>
-          <span><span id="avgLat" class="value">–</span><span class="unit">s</span></span>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Full-Duplex Earbuds Audio</h3>
+          <p class="feature-desc">Keep speaking while English plays in your ears without acoustic feedback or self-translation loops.</p>
         </div>
-        <div class="metric">
-          <span class="metric-name">Segments</span>
-          <span id="count" class="value">0</span>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Pipelined Neural Synthesis</h3>
+          <p class="feature-desc">Parallelized ASR, contextual neural translation, and high-fidelity 24kHz neural audio streaming.</p>
         </div>
-        <!-- <div id="breakdown" class="breakdown"><span class="breakdown-icon">↗</span> STT – · Translate – · Voice –</div> -->
       </section>
     </main>
+
+    <footer class="page-footer">
+      <p>Bolo Voice AI • Built for natural conversations</p>
+    </footer>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

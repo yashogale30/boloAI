@@ -1,5 +1,7 @@
 import './style.css';
 import { playbackRate, shouldSkip } from './playback-policy.js';
+import { initCloudShader } from './cloud-shader.js';
+import { initTiltEffect } from './tilt-effect.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -43,15 +45,36 @@ let finalText = '';
 
 // ---------- status ----------
 function setStatus(text, cls) {
-  ui.status.textContent = text;
-  ui.status.className = `pill ${cls}`;
+  if (ui.status) {
+    ui.status.textContent = text;
+    ui.status.className = `pill ${cls}`;
+  }
+  const navDot = $('nav-status-indicator');
+  if (navDot) {
+    navDot.className = `nav-status-dot ${cls}`;
+    navDot.title = text;
+  }
 }
 
 function setStartButton(isRunning) {
-  ui.start.classList.toggle('stop', isRunning);
-  ui.start.innerHTML = isRunning
-    ? '<span class="button-icon">■</span><span>Stop translating</span><span class="button-arrow">→</span>'
-    : '<span>Start translating</span><span class="button-arrow">→</span>';
+  if (ui.start) {
+    ui.start.classList.toggle('stop', isRunning);
+    ui.start.innerHTML = isRunning
+      ? '<span class="button-icon">■</span><span>Stop translating</span><span class="button-arrow">→</span>'
+      : '<span>Start translating</span><span class="button-arrow">→</span>';
+  }
+  const navCta = $('navCta');
+  if (navCta) {
+    navCta.textContent = isRunning ? 'Stop Translating' : 'Start Translating';
+    navCta.style.background = isRunning ? '#27272a' : '#ffffff';
+    navCta.style.color = isRunning ? '#ffffff' : '#18181b';
+  }
+  const heroPrimary = $('heroPrimary');
+  if (heroPrimary) {
+    heroPrimary.innerHTML = isRunning
+      ? '<span>Stop Translating</span><span class="cta-arrow">■</span>'
+      : '<span>Start Translating</span><span class="cta-arrow">→</span>';
+  }
 }
 
 // ---------- start / stop ----------
@@ -384,3 +407,107 @@ function wavData(buf) {
 function isPlaying() {
   return ctx && playHead + 0.25 > ctx.currentTime;
 }
+
+// ---------- Landing Page Enhancements: Shader, 3D Tilt, Capsule Nav & Popover ----------
+function initLandingPage() {
+  // 1. Initialize WebGL procedural cloud shader in hero background
+  const cloudCanvas = $('cloud-canvas');
+  if (cloudCanvas) {
+    initCloudShader(cloudCanvas, {
+      speed: 0.7,
+      count: 5,
+      cloudColor: '#FFFFFF',
+      skyTopColor: '#2563EB',
+      skyBottomColor: '#93C5FD',
+    });
+  }
+
+  // 2. Initialize Aceternity-style 3D perspective tilt container
+  const perspectiveSection = $('demo-section');
+  if (perspectiveSection) {
+    initTiltEffect(perspectiveSection);
+  }
+
+  // 3. Connect Apple-style Navbar CTA button
+  $('navCta')?.addEventListener('click', () => {
+    if (running) {
+      stop();
+    } else {
+      document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
+      ui.start?.click();
+    }
+  });
+
+  // 4. Connect Hero Primary and Secondary CTAs
+  $('heroPrimary')?.addEventListener('click', () => {
+    if (running) {
+      stop();
+    } else {
+      document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
+      ui.start?.click();
+    }
+  });
+
+  $('heroDemo')?.addEventListener('click', () => {
+    document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
+    $('demo')?.click();
+  });
+
+  // 5. Connect Navbar Dropdown Popover & Mode Selector
+  const dropdownToggle = $('dropdownToggle');
+  const dropdownPopover = $('dropdownPopover');
+  if (dropdownToggle && dropdownPopover) {
+    dropdownToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdownPopover.classList.toggle('open');
+      dropdownToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdownPopover.contains(e.target) && e.target !== dropdownToggle) {
+        dropdownPopover.classList.remove('open');
+        dropdownToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Update popover active option when mode changes
+    const popoverEarbuds = $('popoverModeEarbuds');
+    const popoverSpeaker = $('popoverModeSpeaker');
+
+    function syncPopoverMode(m) {
+      if (popoverEarbuds) popoverEarbuds.classList.toggle('active', m === 'earbuds');
+      if (popoverSpeaker) popoverSpeaker.classList.toggle('active', m === 'speaker');
+    }
+
+    document.querySelectorAll('input[name=mode]').forEach((r) => {
+      r.addEventListener('change', () => syncPopoverMode(r.value));
+    });
+
+    popoverEarbuds?.addEventListener('click', () => {
+      const radio = document.querySelector('input[name=mode][value="earbuds"]');
+      if (radio) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change'));
+      }
+      dropdownPopover.classList.remove('open');
+      dropdownToggle.setAttribute('aria-expanded', 'false');
+    });
+
+    popoverSpeaker?.addEventListener('click', () => {
+      const radio = document.querySelector('input[name=mode][value="speaker"]');
+      if (radio) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change'));
+      }
+      dropdownPopover.classList.remove('open');
+      dropdownToggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', initLandingPage);
+} else {
+  initLandingPage();
+}
+
