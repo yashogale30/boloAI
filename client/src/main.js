@@ -243,6 +243,10 @@ function onMessage(e) {
       break;
     case 'error':
       console.warn('server:', m.message);
+      setStatus(m.message.includes('API key') ? 'Keys missing' : 'Error', 'err');
+      if (!finalText) {
+        ui.interim.textContent = ` ${m.message}`;
+      }
       break;
   }
 }
@@ -434,7 +438,7 @@ function initLandingPage() {
       stop();
     } else {
       document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
-      ui.start?.click();
+      start();
     }
   });
 
@@ -444,7 +448,7 @@ function initLandingPage() {
       stop();
     } else {
       document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
-      ui.start?.click();
+      start();
     }
   });
 

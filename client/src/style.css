@@ -359,6 +359,7 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+  pointer-events: none;
 }
 
 /* Hero Content */
@@ -515,18 +516,16 @@ body {
    Aceternity 3D Rolling Container Scroll Section
    ========================================================================== */
 .perspective-wrapper {
-  perspective: 1400px;
+  perspective: 1200px;
   width: min(calc(100% - 32px), 820px);
   margin: 40px auto 70px;
   position: relative;
-  z-index: 15;
-  transform-style: preserve-3d;
+  z-index: 20;
 }
 
 /* Luxury Tablet / Hardware Screen Chassis */
 .perspective-card {
   position: relative;
-  transform-style: preserve-3d;
   border-radius: 32px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -535,7 +534,7 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.9) inset,
     0 12px 28px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  will-change: transform;
+  pointer-events: auto;
 }
 
 /* Top rim light & ambient backplate */
@@ -550,13 +549,7 @@ body {
 }
 
 .tilt-glare {
-  position: absolute;
-  inset: 0;
-  border-radius: 32px;
-  pointer-events: none;
-  z-index: 25;
-  opacity: 0;
-  transition: opacity 0.25s ease;
+  display: none !important;
 }
 
 /* Device Chassis Topbar */
@@ -605,6 +598,9 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   background: #ffffff;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .session-intro {
@@ -651,6 +647,8 @@ body {
 }
 
 .mode label {
+  position: relative;
+  z-index: 15;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -658,7 +656,8 @@ body {
   padding: 10px 12px;
   border-radius: 10px;
   color: var(--ink-secondary);
-  cursor: pointer;
+  cursor: pointer !important;
+  pointer-events: auto !important;
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
@@ -695,6 +694,7 @@ body {
 /* Primary Start Translating Button */
 button.primary {
   position: relative;
+  z-index: 20;
   display: flex;
   width: 100%;
   min-height: 52px;
@@ -706,7 +706,8 @@ button.primary {
   border-radius: 999px;
   background: #18181b;
   color: #ffffff;
-  cursor: pointer;
+  cursor: pointer !important;
+  pointer-events: auto !important;
   font-family: inherit;
   font-size: 15px;
   font-weight: 600;
@@ -743,13 +744,16 @@ button.primary:hover .button-arrow {
 }
 
 button.link {
+  position: relative;
+  z-index: 20;
   display: block;
   margin: 4px auto 0;
   padding: 6px 10px;
   border: 0;
   background: none;
   color: var(--ink-muted);
-  cursor: pointer;
+  cursor: pointer !important;
+  pointer-events: auto !important;
   font-family: inherit;
   font-size: 13px;
   font-weight: 500;

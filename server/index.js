@@ -9,8 +9,7 @@ import { startSession } from './session.js';
 
 const missing = missingKeys();
 if (missing.length) {
-  console.error(`Missing API keys: ${missing.join(', ')}. Put them in .env (see .env.example).`);
-  process.exit(1);
+  console.warn(`[Warning] Missing API keys: ${missing.join(', ')}. Live STT/LLM/TTS requires them in .env (see .env.example). Serving static clips and health endpoints.`);
 }
 
 const root = path.dirname(fileURLToPath(import.meta.url));

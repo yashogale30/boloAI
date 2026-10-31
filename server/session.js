@@ -22,6 +22,7 @@ import { Chunker } from './chunker.js';
 import { DeepgramStream } from './stt.js';
 import { translate, warmUp } from './translator.js';
 import { CartesiaTTS } from './tts.js';
+import { missingKeys } from './config.js';
 
 let sessionCounter = 0;
 
@@ -35,6 +36,12 @@ export function startSession(ws, cfg) {
     head.writeUInt32LE(seg, 0);
     ws.send(Buffer.concat([head, pcm]));
   };
+
+  const missing = missingKeys();
+  if (missing.length) {
+    send({ type: 'error', message: `Missing server API keys (${missing.join(', ')}). Add them to .env to enable live speech translation.` });
+    return;
+  }
 
   let nextSeg = 0;
   let history = [];
