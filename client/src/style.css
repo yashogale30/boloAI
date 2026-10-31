@@ -94,7 +94,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   border-left: 1px solid rgba(255, 255, 255, 0.10);
   border-right: 1px solid rgba(255, 255, 255, 0.10);
-  max-width: 900px;
+  max-width: 560px;
   width: 100%;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -517,7 +517,7 @@ body {
    ========================================================================== */
 .perspective-wrapper {
   perspective: 1200px;
-  width: min(calc(100% - 32px), 820px);
+  width: min(calc(100% - 32px), 920px);
   margin: 40px auto 70px;
   position: relative;
   z-index: 20;
@@ -568,12 +568,25 @@ body {
   align-items: center;
   gap: 8px;
 }
-.chassis-dot {
+.chassis-dot-red {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fb7185;
-  box-shadow: 0 0 8px rgba(251, 113, 133, 0.8);
+  background: #FF605C;
+  /* box-shadow: 0 0 8px rgba(255, 96, 92, 0.8); */
+}
+.chassis-dot-yellow {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FFBD44;
+  /* box-shadow: 0 0 8px rgba(255, 189, 68, 0.8); */
+}
+.chassis-dot-green {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00CA4E;
 }
 .chassis-label {
   font-family: 'Outfit', sans-serif;

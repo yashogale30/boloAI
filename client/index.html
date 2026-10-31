@@ -17,66 +17,20 @@
       <nav class="top-notch-nav" aria-label="Main Navigation">
         <!-- Brand -->
         <a href="#" class="brand-group">
-          <div class="brand-squircle">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
-            </svg>
-          </div>
+          
           <span class="brand-title">Anuvaad</span>
-          <span id="nav-status-indicator" class="nav-status-dot" title="Idle"></span>
         </a>
 
         <!-- Center Links -->
         <div class="nav-links">
           <a href="#demo-section" class="nav-link">Live App</a>
-          <a href="#how-it-works" class="nav-link">How it works</a>
+          <a href="https://github.com/yashogale30/boloAI" class="nav-link">How it works</a>
           <a href="#performance" class="nav-link">Telemetry</a>
         </div>
 
         <!-- Right Dropdown & CTA -->
         <div class="nav-actions">
-          <!-- Pill Dropdown Selector -->
-          <div class="nav-dropdown" id="modeDropdown">
-            <button class="nav-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" id="dropdownToggle" title="Audio & Translation Mode">
-              <span class="lang-tag" id="navLangTag">HI → EN</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <div class="nav-dropdown-popover" id="dropdownPopover">
-              <div class="popover-section">
-                <span class="popover-label">Translation Pair</span>
-                <div class="popover-item active">
-                  <span class="popover-check">✓</span>
-                  <span>Hindi to English (Live Streaming)</span>
-                </div>
-              </div>
-              <div class="popover-divider"></div>
-              <div class="popover-section">
-                <span class="popover-label">Audio Output Mode</span>
-                <button type="button" class="popover-option active" data-mode="earbuds" id="popoverModeEarbuds">
-                  <span class="mode-icon">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
-                  </span>
-                  <div class="option-info">
-                    <span class="option-title">Earbuds (Recommended)</span>
-                    <span class="option-desc">Continuous mic without feedback</span>
-                  </div>
-                </button>
-                <button type="button" class="popover-option" data-mode="speaker" id="popoverModeSpeaker">
-                  <span class="mode-icon">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
-                  </span>
-                  <div class="option-info">
-                    <span class="option-title">Speaker Mode</span>
-                    <span class="option-desc">Mutes mic while English plays</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Apple-style white pill CTA button -->
+          
           <button id="navCta" class="apple-pill-cta" type="button">
             Start Translating
           </button>
@@ -93,12 +47,7 @@
 
         <div class="hero-content">
           <!-- Sub-badge -->
-          <div class="hero-badge">
-            <span class="badge-dot-live"></span>
-            <span class="badge-text">LIVE SPEECH AI</span>
-            <span class="badge-separator">•</span>
-            <span class="badge-sub">1–3s LATENCY</span>
-          </div>
+          
 
           <!-- Main headline with accent phrase in editorial italic rose -->
           <h1 class="hero-headline">
@@ -136,12 +85,12 @@
           <!-- Device Chassis Topbar -->
           <div class="device-chassis-topbar">
             <div class="chassis-brand">
-              <span class="chassis-dot"></span>
+              <span class="chassis-dot-red"></span>
+              <span class="chassis-dot-yellow"></span>
+              <span class="chassis-dot-green"></span>
               <span class="chassis-label">ANUVAAD REAL-TIME TRANSLATOR</span>
             </div>
-            <div class="chassis-status-pill">
-              <span id="status" class="pill idle">Idle</span>
-            </div>
+            
           </div>
 
           <!-- Main Translation Session -->
@@ -217,12 +166,10 @@
                 </svg>
                 <p class="section-title">English Translation</p>
               </div>
-              <span class="stream-pill">Streaming TTS</span>
             </div>
             <ol id="segments" class="segments">
               <li class="placeholder">
-                <div class="seg-en">Your translated conversation will collect here in real-time.</div>
-                <div class="seg-hi">यहाँ आपके द्वारा बोले गए वाक्यों का अंग्रेज़ी अनुवाद सुनाई और दिखाई देगा।</div>
+                 
               </li>
             </ol>
           </div>
@@ -241,47 +188,12 @@
               <span class="metric-name">Segments Completed</span>
               <span id="count" class="value">0</span>
             </div>
-            <div id="breakdown" class="breakdown">
-              <svg class="breakdown-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
-              <span>STT – · Translate – · Voice –</span>
-            </div>
+            
           </div>
         </div>
       </section>
 
-      <!-- Highlights & Architecture Section (No emojis, sleek SVGs) -->
-      <section id="how-it-works" class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-          </div>
-          <h3 class="feature-title">Sub-2s Glass-to-Ear Latency</h3>
-          <p class="feature-desc">Continuous 16kHz PCM streaming via low-latency WebSockets with chunk-level sentence boundary prediction.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Full-Duplex Earbuds Audio</h3>
-          <p class="feature-desc">Keep speaking while English plays in your ears without acoustic feedback or self-translation loops.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Pipelined Neural Synthesis</h3>
-          <p class="feature-desc">Parallelized ASR, contextual neural translation, and high-fidelity 24kHz neural audio streaming.</p>
-        </div>
-      </section>
+      
     </main>
 
     <footer class="page-footer">
