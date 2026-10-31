@@ -1,6 +1,6 @@
-# Bolo: What's New
+# Anuvaad: What's New
 
-> **Bolo is a live Hindi-to-English interpreter for your earbuds. It understands that Hindi puts the verb last, so it translates clause by clause, about 1.5 seconds behind you, and the delay doesn't grow however long you talk.**
+> **Anuvaad is a live Hindi-to-English interpreter for your earbuds. It understands that Hindi puts the verb last, so it translates clause by clause, about 1.5 seconds behind you, and the delay doesn't grow however long you talk.**
 
 Built for the **Bolna Buildathon** (Symphony 2026). For the architecture and progress, see [PROJECT.md](PROJECT.md). For setup, see [README.md](README.md).
 
@@ -21,7 +21,7 @@ A live translator has two bad options:
 | Wait for the whole sentence | Correct English, but **several seconds** of silence |
 | Translate word by word as you speak | Fast, but **broken English** and wrong guesses |
 
-Bolo takes a third path.
+Anuvaad takes a third path.
 
 ---
 
@@ -59,7 +59,7 @@ Code: [`server/translator.js`](server/translator.js)
 
 ### 3. An honest "mouth to ear" delay
 
-Most demos show server processing time. Bolo measures **the moment the speaker stops saying a phrase** to **the moment the English starts playing in the earbuds**.
+Most demos show server processing time. Anuvaad measures **the moment the speaker stops saying a phrase** to **the moment the English starts playing in the earbuds**.
 
 How it works: the browser records when each 100 ms of mic audio was captured. The recognizer's word timestamps are mapped back to that clock, and when the English starts playing the browser takes the difference. The number on screen includes network time and any waiting in the playback queue.
 
@@ -67,7 +67,7 @@ Code: [`client/src/main.js`](client/src/main.js)
 
 ### 4. Delay that doesn't pile up
 
-English usually takes longer to say than Hindi, so most live translators drift further behind the longer someone talks. Bolo's player:
+English usually takes longer to say than Hindi, so most live translators drift further behind the longer someone talks. Anuvaad's player:
 
 | English waiting in the queue | What happens |
 |---|---|
@@ -120,9 +120,9 @@ Code: [`tools/run-clip.mjs`](tools/run-clip.mjs)
 
 ---
 
-## How Bolo compares
+## How Anuvaad compares
 
-| | Typical "conversation mode" translators | Bolo |
+| | Typical "conversation mode" translators | Anuvaad |
 |---|---|---|
 | Speaking style | Speak, stop, wait, listen | Keep talking; English follows ~1.5 s behind |
 | Hindi verb-last word order | Waits for the full sentence | Translates clause by clause |
@@ -131,7 +131,7 @@ Code: [`tools/run-clip.mjs`](tools/run-clip.mjs)
 | Latency | Rarely shown | Live mouth-to-ear counter on screen |
 | Platform | Tied to an app or device | Any phone browser + a streaming API |
 
-**Note:** Google Translate's conversation mode, Samsung's Interpreter and Apple's Live Translation with AirPods all offer live translation. Bolo's angle is **Hindi and Hinglish first, any device, and open latency numbers**. Check each product's current language support before naming it in the pitch.
+**Note:** Google Translate's conversation mode, Samsung's Interpreter and Apple's Live Translation with AirPods all offer live translation. Anuvaad's angle is **Hindi and Hinglish first, any device, and open latency numbers**. Check each product's current language support before naming it in the pitch.
 
 ---
 
@@ -158,6 +158,6 @@ Code: [`tools/run-clip.mjs`](tools/run-clip.mjs)
 ## The pitch in 30 seconds
 
 > "Live translators make you speak, stop and wait. Hindi makes it harder, because the verb comes last.
-> Bolo translates **clause by clause** as you talk, using Hindi grammar to know when a thought is complete, and speaks natural English in your earbuds **about 1.5 seconds behind you**.
+> Anuvaad translates **clause by clause** as you talk, using Hindi grammar to know when a thought is complete, and speaks natural English in your earbuds **about 1.5 seconds behind you**.
 > It handles Hinglish, it keeps up through a nonstop monologue, and the delay counter on screen is measured mouth to ear.
 > It runs in any phone browser, and it's a streaming API, so the next step is live phone calls."

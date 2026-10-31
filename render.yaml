@@ -1,7 +1,7 @@
 # One-click deploy on Render: New > Blueprint > pick this repo, then paste the keys.
 services:
   - type: web
-    name: bolo-live-translator
+    name: anuvaad-live-translator
     runtime: node
     plan: free
     buildCommand: npm install --include=dev && npm run build

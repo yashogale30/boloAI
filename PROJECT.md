@@ -1,4 +1,4 @@
-# Bolo: Project Overview
+# Anuvaad: Project Overview
 
 > **Speak Hindi. Hear English.** A live voice interpreter that speaks the English translation in your earbuds about 1–2 seconds after you finish each phrase, while you keep talking.
 
@@ -26,7 +26,7 @@ This document covers what the project is, how it is built, what is done, and wha
 
 ---
 
-## 2. What Bolo does
+## 2. What Anuvaad does
 
 1. Open the web app on a phone and put in earbuds.
 2. Tap **Start** and speak Hindi (or Hinglish).
@@ -117,7 +117,7 @@ Hindi puts the verb last:
 - **Translating word by word** produces broken English, and words like **कल** (*yesterday* or *tomorrow*) can't be resolved until the verb arrives.
 - **Waiting for the full sentence** adds several seconds of delay.
 
-**Bolo's approach: commit at Hindi clause boundaries.**
+**Anuvaad's approach: commit at Hindi clause boundaries.**
 
 1. **Stable-text rule.** The last 2 words of every partial transcript are ignored, because they still change as more audio arrives.
 2. **Clause-end detection.** A phrase is committed when the stable text reaches one of these:
@@ -250,7 +250,7 @@ Open the link on the phone, put in earbuds, tap **Start**, and check each of the
 | 5 | **Submit** the form and open every link in a private window | Confirms it loads for someone else |
 
 **Suggested description (under 200 characters):**
-> Bolo: speak Hindi, hear natural English in your earbuds ~1.5 s later. Live streaming STT → LLM → TTS with Hindi clause-aware chunking and a live latency counter.
+> Anuvaad: speak Hindi, hear natural English in your earbuds ~1.5 s later. Live streaming STT → LLM → TTS with Hindi clause-aware chunking and a live latency counter.
 
 ### Quick wins (an hour or less each)
 
