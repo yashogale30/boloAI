@@ -1,0 +1,20 @@
+# One-click deploy on Render: New > Blueprint > pick this repo, then paste the keys.
+services:
+  - type: web
+    name: bolo-live-translator
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.20.0
+      - key: DEEPGRAM_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CARTESIA_API_KEY
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false

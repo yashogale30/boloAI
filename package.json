@@ -1,0 +1,28 @@
+{
+  "name": "bolna-live-translator",
+  "version": "1.0.0",
+  "description": "Hindi to English live voice translator: speak Hindi, hear English in your earbuds 1-3 seconds later.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,magenta \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "node --env-file-if-exists=.env --watch-path=server server/index.js --port 3000",
+    "dev:web": "vite",
+    "build": "vite build",
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "clips": "node --env-file-if-exists=.env tools/make-clips.mjs",
+    "test:clips": "node tools/run-clip.mjs --all",
+    "test:unit": "node --test \"server/**/*.test.js\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6",
+    "vite": "^8.3.5"
+  }
+}

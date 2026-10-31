@@ -1,0 +1,12 @@
+[
+  { "id": "01-short-tea", "kind": "short", "hi": "मुझे एक कप चाय चाहिए।", "en": "I need a cup of tea." },
+  { "id": "02-short-weather", "kind": "short", "hi": "आज मौसम बहुत अच्छा है।", "en": "The weather is really nice today." },
+  { "id": "03-short-where", "kind": "short", "hi": "आप कहाँ जा रहे हैं?", "en": "Where are you going?" },
+  { "id": "04-short-market", "kind": "short", "hi": "मैं कल बाज़ार जाऊँगा।", "en": "I will go to the market tomorrow." },
+  { "id": "05-short-help", "kind": "short", "hi": "क्या आप मेरी मदद कर सकते हैं?", "en": "Can you help me?" },
+  { "id": "06-long-goa", "kind": "long", "hi": "पिछले हफ्ते मैं अपने दोस्तों के साथ गोवा गया था, और हमने समुद्र के किनारे बहुत मज़े किए।", "en": "Last week I went to Goa with my friends, and we had a lot of fun on the beach." },
+  { "id": "07-long-train", "kind": "long", "hi": "अगर तुम समय पर स्टेशन पहुँच जाओगे तो हम साथ में ट्रेन पकड़ लेंगे, वरना मुझे अकेले जाना पड़ेगा।", "en": "If you reach the station on time we'll catch the train together, otherwise I'll have to go alone." },
+  { "id": "08-long-grandma", "kind": "long", "hi": "मेरी दादी हर सुबह जल्दी उठकर बगीचे में पानी देती हैं और फिर हम सबके लिए नाश्ता बनाती हैं।", "en": "Every morning my grandmother wakes up early, waters the garden, and then makes breakfast for all of us." },
+  { "id": "09-hinglish-meeting", "kind": "hinglish", "hi": "कल की meeting cancel हो गई क्योंकि client की flight delay थी।", "en": "Yesterday's meeting got cancelled because the client's flight was delayed." },
+  { "id": "10-hinglish-whatsapp", "kind": "hinglish", "hi": "मैंने तुम्हें WhatsApp पर location भेज दी है, please जल्दी आ जाना।", "en": "I've sent you the location on WhatsApp, please come quickly." }
+]
