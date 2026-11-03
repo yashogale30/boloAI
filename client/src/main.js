@@ -414,9 +414,13 @@ function isPlaying() {
 
 // ---------- Landing Page Enhancements: Shader, 3D Tilt, Capsule Nav & Popover ----------
 function initLandingPage() {
-  // 1. Initialize WebGL procedural cloud shader in hero background
+  const isMobile = window.matchMedia(
+    '(max-width: 820px), (pointer: coarse)',
+  ).matches;
+
+  // Keep the expensive animated effects on devices that can render them smoothly.
   const cloudCanvas = $('cloud-canvas');
-  if (cloudCanvas) {
+  if (cloudCanvas && !isMobile) {
     initCloudShader(cloudCanvas, {
       speed: 0.7,
       count: 5,
@@ -426,9 +430,9 @@ function initLandingPage() {
     });
   }
 
-  // 2. Initialize Aceternity-style 3D perspective tilt container
+  // The scroll transform adds little value on touch devices and can compete with scrolling.
   const perspectiveSection = $('demo-section');
-  if (perspectiveSection) {
+  if (perspectiveSection && !isMobile) {
     initTiltEffect(perspectiveSection);
   }
 
@@ -514,4 +518,3 @@ if (document.readyState === 'loading') {
 } else {
   initLandingPage();
 }
-
